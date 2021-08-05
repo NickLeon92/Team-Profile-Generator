@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Unpack Me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickLeon92/Team-Profile-Generator.git"
+  },
+  "author": "NL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickLeon92/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/NickLeon92/Team-Profile-Generator#readme",
+  "dependencies": {
+    "jest": "^27.0.6",
+    "inquirer": "^8.1.2"
+  }
+}
