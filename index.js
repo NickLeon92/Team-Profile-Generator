@@ -3,14 +3,18 @@ const fs = require('fs');
 const util = require('util');
 // const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 const managerList = []
+const engineerList = []
+const internList = []
 
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const promptUser = () => {
+const ManagerForm = () => {
   return inquirer.prompt([
     {
       type: 'input',
@@ -45,13 +49,74 @@ const Menu = () => {
   }
 ).then((answers) => {
   if (answers.menuChoice === 'Engineer') {
-    promptUser().then((answers) => {
-      Menu()
-      storeManager(answers)})
+    EngineerForm()
+      .then((answers) => {
+        Menu()
+        storeEngineer(answers)})
     .catch((err) => console.error(err))
+  }
+  if (answers.menuChoice === 'Intern') {
+    InternForm()
+      .then((answers) => {
+        Menu()
+        storeIntern(answers)})
+    .catch((err) => console.error(err))
+  }
+  if (answers.menuChoice === 'Finish Team'){
+    testfunc()
   }
 })
 }
+
+const EngineerForm = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Please Enter Engineer Name:',
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Please Enter Engineer ID Number:',
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Please Enter Engineer Email:',
+    },
+    {
+      type: 'input',
+      name: 'github',
+      message: 'Please Enter Engineer GitHub User ID:',
+    },
+  ]);
+};
+
+const InternForm = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Please Enter Intern Name:',
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Please Enter Intern ID Number:',
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Please Enter Intern Email:',
+    },
+    {
+      type: 'input',
+      name: 'school',
+      message: 'Please Enter Intern Office School:',
+    },
+  ]);
+};
 
 const generateHTML = (answers) =>
   `<!DOCTYPE html>
@@ -79,7 +144,7 @@ const generateHTML = (answers) =>
 
 // Bonus using writeFileAsync as a promise
 const init = () => {
-  promptUser()
+  ManagerForm()
     .then((answers) => {
       Menu()
       storeManager(answers)})
@@ -88,7 +153,20 @@ const init = () => {
 const storeManager = (answers) => {
   const currentManager = new Manager(answers.name, answers.id, answers.email, answers.officenumber)
   managerList.push(currentManager)
+}
+const storeEngineer = (answers) => {
+  const currentEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+  engineerList.push(currentEngineer)
+}
+const storeIntern = (answers) => {
+  const currentIntern = new Intern(answers.name, answers.id, answers.email, answers.school)
+  internList.push(currentIntern)
+}
+
+function testfunc(){
   console.log(managerList)
+  console.log(engineerList)
+  console.log(internList)
 }
 
 init();
