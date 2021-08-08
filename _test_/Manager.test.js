@@ -18,14 +18,6 @@ describe("Manager class",() => {
     })
 })
 
-describe("Manager class",() => {
-    describe("getRole method", () => {
-        it("should return correct role", () => {
-            const testManager = new Manager("Phil","13", "phil@phil.com", "2");
-            expect(testManager.getRole()).toBe("Manager")
-        })
-    })
-})
 
 describe("Manager class",() => {
     describe("getId method", () => {
@@ -36,14 +28,7 @@ describe("Manager class",() => {
     })
 })
 
-describe("Manager class",() => {
-    describe("getRole method", () => {
-        it("should return correct role", () => {
-            const testManager = new Manager("Phil","13", "phil@phil.com", "2");
-            expect(testManager.getRole()).toBe("Manager")
-        })
-    })
-})
+
 
 // describe("Manager class",() => {
 //     describe("getOfficeNumber method", () => {

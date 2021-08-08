@@ -32,6 +32,9 @@ none at this time
 
 run "npm test" to verify program running normally
 
+https://user-images.githubusercontent.com/83552236/128647558-b209ead8-ba64-4868-a55c-be1d003cabb1.mp4
+
+
 ## Questions
 
 For further questions reach to me on [GitHub](https://github.com/NickLeon92)
