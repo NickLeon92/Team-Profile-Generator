@@ -174,10 +174,10 @@ const storeManager = (answers) => {
     <div class="card-body">
       <h5 class="card-title">${currentManager.name}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${currentManager.getRole()}</h6>
-      <div class="card" style="width: 18rem;">
+      <div style="width: 100%;">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID Number: ${currentManager.id}</li>
-      <li class="list-group-item">Email: ${currentManager.email}</li>
+      <li class="list-group-item">Email: <a href="mailto:${currentManager.email}">${currentManager.email}</a></li>
       <li class="list-group-item">Office Number: ${currentManager.officeNumber}</li>
     </ul>
   </div>
@@ -193,11 +193,11 @@ const storeEngineer = (answers) => {
     <div class="card-body">
       <h5 class="card-title">${currentEngineer.name}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${currentEngineer.getRole()}</h6>
-      <div class="card" style="width: 18rem;">
+      <div style="width: 100%;">
     <ul class="list-group list-group-flush">
     <li class="list-group-item">ID Number: ${currentEngineer.id}</li>
-    <li class="list-group-item">Email: ${currentEngineer.email}</li>
-    <li class="list-group-item">GitHub: ${currentEngineer.gitHub}</li>
+    <li class="list-group-item">Email: <a href="mailto:${currentEngineer.email}">${currentEngineer.email}</a></li>
+    <li class="list-group-item">GitHub: <a href="https://github.com/${currentEngineer.gitHub}">${currentEngineer.gitHub}</a></li>
     </ul>
   </div>
     </div>
@@ -212,10 +212,10 @@ const storeIntern = (answers) => {
     <div class="card-body">
       <h5 class="card-title">${currentIntern.name}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${currentIntern.getRole()}</h6>
-      <div class="card" style="width: 18rem;">
+      <div style="width: 100%;">
     <ul class="list-group list-group-flush">
     <li class="list-group-item">ID Number: ${currentIntern.id}</li>
-    <li class="list-group-item">Email: ${currentIntern.email}</li>
+    <li class="list-group-item">Email: <a href="mailto:${currentIntern.email}">${currentIntern.email}</a></li>
     <li class="list-group-item">School: ${currentIntern.school}</li>
     </ul>
   </div>

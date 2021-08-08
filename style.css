@@ -4,4 +4,17 @@ li{
 
 .mySection {
     display: flex;
+    justify-content: center;
+}
+
+#listContent {
+    width: 75%;
+}
+
+.card {
+    margin: 10px 50px;
+}
+
+h1{
+    text-align: center;
 }
