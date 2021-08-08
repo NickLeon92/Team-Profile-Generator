@@ -22,7 +22,7 @@ run npm i to install packages
 
 Run "node index" in the CLI to start answering the question prompts
 
-https://github.com/NickLeon92/Team-Profile-Generator/issues/1#issue-963526295
+https://user-images.githubusercontent.com/83552236/128647298-c490eac5-ba22-4540-a136-0b6b2042114e.mp4
 
 ## Contributing
 
