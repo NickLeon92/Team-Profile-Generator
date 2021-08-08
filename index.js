@@ -9,6 +9,9 @@ const Intern = require('./lib/Intern');
 const managerList = []
 const engineerList = []
 const internList = []
+let manSection = ``
+let engSection = ``
+let intSection = ``
 
 
 // create writeFile function using promises instead of a callback function
@@ -63,7 +66,7 @@ const Menu = () => {
     .catch((err) => console.error(err))
   }
   if (answers.menuChoice === 'Finish Team'){
-    testfunc()
+    writeFileAsync('index.html', generateHTML()).then()
   }
 })
 }
@@ -118,27 +121,41 @@ const InternForm = () => {
   ]);
 };
 
-const generateHTML = (answers) =>
+const generateHTML = () =>
   `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
   <title>Document</title>
 </head>
 <body>
   <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Hi! My name is ${answers.name}</h1>
-    <p class="lead">I am from ${answers.location}.</p>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${answers.github}</li>
-      <li class="list-group-item">LinkedIn: ${answers.linkedin}</li>
-    </ul>
+    <h1 class="display-4">THE TEAM</h1>
   </div>
-</div>
+  </div>
+
+  <h1>Managers<h1>
+
+  <div class = "mySection">
+  ${manSection}
+  </div>
+
+  <h1>Engineers<h1>
+
+  <div class = "mySection">
+  ${engSection}
+  </div>
+
+  <h1>Interns<h1>
+
+  <div class = "mySection">
+  ${intSection}
+  </div>
+
 </body>
 </html>`;
 
@@ -152,22 +169,89 @@ const init = () => {
 };
 const storeManager = (answers) => {
   const currentManager = new Manager(answers.name, answers.id, answers.email, answers.officenumber)
+  manSection = `
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${currentManager.name}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">${currentManager.getRole()}</h6>
+      <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">ID Number: ${currentManager.id}</li>
+      <li class="list-group-item">Email: ${currentManager.email}</li>
+      <li class="list-group-item">Office Number: ${currentManager.officeNumber}</li>
+    </ul>
+  </div>
+    </div>
+  </div>
+      ` + manSection;
   managerList.push(currentManager)
 }
 const storeEngineer = (answers) => {
   const currentEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+  engSection = `
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${currentEngineer.name}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">${currentEngineer.getRole()}</h6>
+      <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">ID Number: ${currentEngineer.id}</li>
+    <li class="list-group-item">Email: ${currentEngineer.email}</li>
+    <li class="list-group-item">GitHub: ${currentEngineer.gitHub}</li>
+    </ul>
+  </div>
+    </div>
+  </div>
+      ` + engSection;
   engineerList.push(currentEngineer)
 }
 const storeIntern = (answers) => {
   const currentIntern = new Intern(answers.name, answers.id, answers.email, answers.school)
+  intSection = `
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${currentIntern.name}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">${currentIntern.getRole()}</h6>
+      <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">ID Number: ${currentIntern.id}</li>
+    <li class="list-group-item">Email: ${currentIntern.email}</li>
+    <li class="list-group-item">School: ${currentIntern.school}</li>
+    </ul>
+  </div>
+    </div>
+  </div>
+      ` + intSection;
   internList.push(currentIntern)
 }
 
-function testfunc(){
-  console.log(managerList)
-  console.log(engineerList)
-  console.log(internList)
-}
+// function testfunc(){
+//   engineerList.forEach(element => {
+    
+//   });
+
+//   `
+//   <div class="card" style="width: 18rem;">
+//     <div class="card-body">
+//       <h5 class="card-title">${engineerList[i].name}</h5>
+//       <h6 class="card-subtitle mb-2 text-muted">${engineerList[i].getRole()}</h6>
+//       <div class="card" style="width: 18rem;">
+//     <ul class="list-group list-group-flush">
+//       <li class="list-group-item">ID Number: TEST</li>
+//       <li class="list-group-item">TEST</li>
+//       <li class="list-group-item">TEST</li>
+//     </ul>
+//   </div>
+//     </div>
+//   </div>
+//       `;
+//   }
+
+
+
+//   }
+  // writeFileAsync('index.html', generateHTML())
+
 
 init();
 
