@@ -5,6 +5,7 @@ li{
 .mySection {
     display: flex;
     justify-content: center;
+    flex-direction: row-reverse;
 }
 
 #listContent {

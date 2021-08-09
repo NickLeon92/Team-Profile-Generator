@@ -1,22 +1,24 @@
+//import relevant libraries
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-// const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+//initialize data storage
 const managerList = []
 const engineerList = []
 const internList = []
+//initialize html content
 let manSection = ``
 let engSection = ``
 let intSection = ``
 
-
-// create writeFile function using promises instead of a callback function
+//initializes file writting when called
 const writeFileAsync = util.promisify(fs.writeFile);
 
+//initial form to record manager data
 const ManagerForm = () => {
   return inquirer.prompt([
     {
@@ -41,7 +43,7 @@ const ManagerForm = () => {
     },
   ]);
 };
-
+//initializes menu prompt
 const Menu = () => {
   return inquirer.prompt(
     {
@@ -50,6 +52,8 @@ const Menu = () => {
       name: 'menuChoice',
       choices: ['Engineer', 'Intern', 'Finish Team'],
   }
+
+  //once selected, the code navigates you to the selected fillout form
 ).then((answers) => {
   if (answers.menuChoice === 'Engineer') {
     EngineerForm()
@@ -65,12 +69,13 @@ const Menu = () => {
         storeIntern(answers)})
     .catch((err) => console.error(err))
   }
+  //if finished, the file writting function is called
   if (answers.menuChoice === 'Finish Team'){
     writeFileAsync('index.html', generateHTML()).then()
   }
 })
 }
-
+//returns series of prompts for engineer entries
 const EngineerForm = () => {
   return inquirer.prompt([
     {
@@ -95,7 +100,7 @@ const EngineerForm = () => {
     },
   ]);
 };
-
+//returns series of prompts for intern entries
 const InternForm = () => {
   return inquirer.prompt([
     {
@@ -120,7 +125,7 @@ const InternForm = () => {
     },
   ]);
 };
-
+//this lays the structure of the html
 const generateHTML = () =>
   `<!DOCTYPE html>
 <html lang="en">
@@ -159,16 +164,23 @@ const generateHTML = () =>
 </body>
 </html>`;
 
-// Bonus using writeFileAsync as a promise
+//initializer function
 const init = () => {
+  //application begins with answering manager questions
   ManagerForm()
     .then((answers) => {
+      //menu function called
       Menu()
+      //data handler function stores the data from the manager questions
       storeManager(answers)})
     .catch((err) => console.error(err));
 };
+
+//handler function for manager data
 const storeManager = (answers) => {
+  //creates new member of manager class
   const currentManager = new Manager(answers.name, answers.id, answers.email, answers.officenumber)
+  //creates html section for manager
   manSection = `
   <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -186,8 +198,11 @@ const storeManager = (answers) => {
       ` + manSection;
   managerList.push(currentManager)
 }
+//handler function for engineer data
 const storeEngineer = (answers) => {
+  //creates new member of engineer class
   const currentEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+  //creates html section for engineers and appends the section every time a new entry is added
   engSection = `
   <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -203,10 +218,14 @@ const storeEngineer = (answers) => {
     </div>
   </div>
       ` + engSection;
+      //creates running list of engineers
   engineerList.push(currentEngineer)
 }
+//handler function for intern data
 const storeIntern = (answers) => {
+  //creates new member of intern class
   const currentIntern = new Intern(answers.name, answers.id, answers.email, answers.school)
+  //creates html section for intern and appends the section every time a new entry is added
   intSection = `
   <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -222,44 +241,8 @@ const storeIntern = (answers) => {
     </div>
   </div>
       ` + intSection;
+      //creates running list of interns
   internList.push(currentIntern)
 }
-
-// function testfunc(){
-//   engineerList.forEach(element => {
-    
-//   });
-
-//   `
-//   <div class="card" style="width: 18rem;">
-//     <div class="card-body">
-//       <h5 class="card-title">${engineerList[i].name}</h5>
-//       <h6 class="card-subtitle mb-2 text-muted">${engineerList[i].getRole()}</h6>
-//       <div class="card" style="width: 18rem;">
-//     <ul class="list-group list-group-flush">
-//       <li class="list-group-item">ID Number: TEST</li>
-//       <li class="list-group-item">TEST</li>
-//       <li class="list-group-item">TEST</li>
-//     </ul>
-//   </div>
-//     </div>
-//   </div>
-//       `;
-//   }
-
-
-
-//   }
-  // writeFileAsync('index.html', generateHTML())
-
-
+//initialize application
 init();
-
-// const init = () => {
-//   promptUser()
-//     .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-//     .then(() => console.log('Successfully wrote to index.html'))
-//     .catch((err) => console.error(err));
-// };
-
-// init();
